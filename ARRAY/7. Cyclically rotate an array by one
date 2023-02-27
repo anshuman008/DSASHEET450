@@ -1,0 +1,19 @@
+
+//User function Template for C++
+
+void reverse(int arr[] , int n , int s){
+    
+    int e = n-1;
+    while(s<e){
+        swap(arr[s],arr[e]);
+        s++;
+        e--;
+    }
+    
+}
+void rotate(int arr[], int n)
+{
+    reverse(arr,n,0);
+    reverse(arr,n,1);
+    
+}
