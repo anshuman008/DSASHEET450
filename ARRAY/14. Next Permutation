@@ -1,0 +1,38 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        
+        int n = nums.size();
+        int f = 0;
+
+         int curr;
+         int prev;
+
+        for(int i = n-1; i-1 >= 0 ; i--){
+            curr = nums[i];
+            prev = nums[i-1];
+              
+              if(curr > prev){
+                  curr = i;
+                  prev = i-1;
+                  f = 1;
+                   break;
+              }
+        }
+        
+        if(f == 0){
+            reverse(nums.begin(),nums.end());
+            return;
+        }
+
+        int near = curr;
+        for(int i = curr+1; i<n; i++ ){
+               if(nums[i] > nums[prev] && nums[i] <= nums[near]){
+                   near = i;
+               }
+        }
+
+       swap(nums[prev],nums[near]);
+       reverse(nums.begin()+curr,nums.end());
+    }
+};
