@@ -1,0 +1,32 @@
+class Solution{
+    public:
+        //Function to merge the arrays.
+        void merge(long long arr1[], long long arr2[], int n, int m) 
+        { 
+           vector<long long int> nums;
+           for(int i = 0; i<n ; i++){
+               nums.push_back(arr1[i]);
+           }
+           
+           for(int i = 0; i<m ; i++){
+               nums.push_back(arr2[i]);
+           }
+             
+           sort(nums.begin(),nums.end());
+        //   for(int i = 0; i<nums.size(); i++){
+        //       cout<<nums[i]<<" ";
+        //   }
+        //   cout<<endl;
+           
+          int i = 0;
+          for(i ; i<n; i++){
+              arr1[i] = nums[i];
+          }
+          int k = 0;
+          for(i ; i<m+n ; i++){
+              arr2[k] = nums[i];
+              k++;
+          }
+           
+        } 
+};
