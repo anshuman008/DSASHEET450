@@ -1,0 +1,23 @@
+ vector<int> duplicates(int arr[], int n) {
+      
+      vector<int> ans;
+      
+      for(int i = 0; i<n; i++){
+
+        int index = abs(arr[i]);
+        // int val = arr[index];
+        if(arr[index] < 0 ){
+            ans.push_back(index);
+        }
+        else{
+            arr[index] = arr[index]*(-1);
+        }
+        
+    }
+    
+    if(ans.size() == 0){
+        return {-1};
+    }
+      return ans;
+      
+    }
