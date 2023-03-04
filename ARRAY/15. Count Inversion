@@ -1,0 +1,75 @@
+
+class Solution{
+  public:
+
+long long int merge(long long int *arr, long long int s, long long int e,long long int mid){
+    long long int inv = 0;
+    
+  
+    long long int len1 = mid-s+1;
+   long long int len2 = e - mid;
+    
+    long long int *first = new long long int[len1];
+    long long int *second = new long long int[len2];
+    
+     // left array
+    long long int k = s;
+    for (int i = 0; i < len1; i++){
+         first[i] = arr[k];
+         k++;
+    }
+       
+        
+      // right array
+    k = mid+1;
+    for (int j = 0; j < len2; j++){
+        second[j] = arr[k];
+        k++;
+    }
+    
+    // merge both array
+    
+  int i = 0;
+  int j = 0;
+ long long int ind = s;
+  while(i < len1 && j < len2){
+        
+         if(first[i] <= second[j]){
+            arr[ind] = first[i];
+            i++;
+        }
+        else{
+            arr[ind] = second[j];
+            j++;
+            inv += (len1 - i);
+        }
+        
+        ind++;
+    }
+  
+  while(i < len1){
+      arr[ind++] = first[i++];
+  }
+    
+while(j < len2){
+    arr[ind++] = second[j++];
+}
+
+return inv;
+}
+ long long int mergeSort( long long int *arr, long long int s, long long int e){
+    long long int inv = 0;
+     if(s < e){
+        long long int mid = s+(e-s)/2;
+        inv +=  mergeSort(arr,s,mid);
+        inv += mergeSort(arr,mid+1,e);
+         inv += merge(arr,s,e,mid);
+     }
+     return inv;
+ }
+    long long int inversionCount(long long arr[], long long N)
+    {
+       return mergeSort(arr,0,N-1);
+    }
+
+};
